@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Yami | Developer Portfolio</title>
+
+  <!-- Preconnect and preload font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    html {
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    :root {
+      --bg: #0a0a0a;
+      --text: #fff;
+      --dim: #aaa;
+      --accent: #ffffff;
+      --card: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.1);
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      scroll-behavior: smooth;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(10, 10, 10, 0.9);
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      padding: 1rem;
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: var(--accent);
+      transition: width 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    header {
+      padding: 3rem 1rem 2rem;
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    .tagline {
+      font-size: 1.2rem;
+      color: var(--dim);
+      margin-top: 0.5rem;
+    }
+
+    section {
+      padding: 4rem 1.5rem;
+      max-width: 900px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.6s ease-out;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      border-left: 5px solid var(--accent);
+      padding-left: 1rem;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 4rem auto;
+      width: 90%;
+    }
+
+    .project, .skill-card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--border);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .project:hover, .skill-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .project h2, .skill-card h3 {
+      font-size: 1.5rem;
+    }
+
+    .project p, .skill-card p {
+      margin-top: 0.5rem;
+      color: var(--dim);
+    }
+
+    .dropdown {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: all 0.4s ease;
+      margin-top: 1rem;
+    }
+
+    .project.active .dropdown {
+      max-height: 800px;
+      opacity: 1;
+    }
+
+    .dropdown img {
+      width: 100%;
+      max-height: 300px;
+      object-fit: contain;
+      margin-top: 1rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .skill-card {
+      flex: 1 1 40%;
+      min-width: 150px;
+    }
+
+    .about, .contact {
+      color: var(--dim);
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 1rem;
+      font-size: 0.9rem;
+      color: var(--dim);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      header { font-size: 2rem; }
+      nav { flex-wrap: wrap; gap: 1rem; }
+      .project h2, .skill-card h3 { font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <header>
+    Yami
+    <div class="tagline">Developer • Designer • Creator</div>
+  </header>
+
+  <section id="about" class="about">
+    <h1>About</h1>
+    <p>
+      I'm Yami, a passionate dev who creates smooth, Utility tools and experiences in Minecraft Bedrock Edition and web ecosystems. I love working on projects that help creators build more, and players enjoy more.
+    </p>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="projects">
+    <h1>Projects</h1>
+
+    <div class="project">
+      <h2>Origin Client</h2>
+      <p>Performance-enhanced Minecraft client with sleek UI, Launcher, Store and mods.</p>
+      <div class="dropdown">
+        <p>Optimized for mobile. Modules, modern interface, a clean launcher and store and enhanced visuals.</p>
+        <img src="1.png" alt="Origin Client Screenshot">
+        <p><a href="">View on GitHub</a> • <a href="https://sukrisus.github.io/Origin-Client-Website/">Website</a> • <a href="https://discord.gg/2j7Pm5rhG5">Discord</a></p>
+      </div>
+    </div>
+
+    <div class="project">
+      <h2>Ytils Modules UI Pack</h2>
+      <p>Open Source Minimal UI texture pack for Minecraft Bedrock editon.</p>
+      <div class="dropdown">
+        <p>Open Source Modern look, streamlined UI layouts, Ui Texture Pack For Minecraft Bedrock Edition.</p>
+        <img src="2.png" alt="Ytils UI Screenshot">
+        <p><a href="#">View on Github</a> • <a href="https://discord.gg/fjQhh5zwqw">Discord</a></p>
+      </div>
+    </div>
+
+    <div class="project">
+      <h2>OAI Generator</h2>
+      <p>Web-based tool to generate animated item files easily.</p>
+      <div class="dropdown">
+        <p>A optimal aniamted items generator for Origin Client to load animated items in game with minimal load.</p>
+        <img src="6.png" alt="oai Screenshot">
+        <p><a href="https://sukrisus.github.io/Origin-Animated-items-maker/">Website</a></p>
+      </div>
+    </div>
+    
+    <div class="project">
+      <h2>Origin Cosmetics Store</h2>
+      <p>The official cosmetic store for origin client</p>
+      <div class="dropdown">
+        <p>free and paid cosmetics for Origin Client to make your character look more beautiful</p>
+        <img src="5.png" alt="store Screenshot">
+        <p><a href="https://sukrisus.github.io/Origin-store/">Website</a></p>
+      </div>
+    </div>
+    <div class="project">
+      <h2>Packaverse.dev</h2>
+      <p>The Best Pack Making community and Website for Minecraft Bedrock edition</p>
+      <div class="dropdown">
+        <p>Filled with useful guides and tutorials to learn about making for MCBE even on your Phone</p>
+        <p><a href="https://github.com/Packaverse">View on Github</a> • <a href="">Website</a> • <a href="https://discord.gg/suvzYPhddb">Discord</a></p>
+      </div>
+    </div>
+    <div class="project">
+      <h2>Packverse • Cape Generator</h2>
+      <p>Generate capes for your MCBE without any problem</p>
+      <div class="dropdown">
+        <p>Tool By Packaverse. Used to generate capes for mcbe, supports optifine capes too</p>
+        <img src="3.png" alt="cape generator Screenshot">
+        <p><a href="https://packaverse.github.io/Custom-cape-generator-for-minecraft-Bedrock-edition/">Website</a></p>
+      </div>
+    </div>
+    <div class="project">
+      <h2>Packverse • Player.entity.json merger</h2>
+      <p>merge your player.entity.json files </p>
+      <div class="dropdown">
+        <p>Tool By Packaverse. Merges two or player.entity.json files without any conflict in the code</p>
+        <img src="4.png" alt="player.entity.json">
+        <p><a href="https://packaverse.github.io/player.entity.json-merger/">Website</a></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="skills">
+    <h1>Skills</h1>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Languages</h3>
+        <p>JavaScript, Json UI, HTML, CSS, Java</p>
+      </div>
+      <div class="skill-card">
+        <h3>Tools</h3>
+        <p>React, Acode, Aide, Git, Sketchware Pro</p>
+      </div>
+      <div class="skill-card">
+        <h3>Minecraft Development</h3>
+        <p>Minecraft Bedrock Clients, UI, Resource Packs, Mod Menus</p>
+      </div>
+      <div class="skill-card">
+        <h3>Design</h3>
+        <p>UI/UX Design, Graphic designs, Web Animation, Texture pack creation</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="contact" class="contact">
+    <h1>Contact</h1>
+    <p>
+      Discord: <strong>@yami_is_hot</strong><br/>
+      GitHub: <a href="https://github.com/Sukrisus" target="_blank">github.com/Sukrisus</a>
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 Yami. All rights reserved.
+  </footer>
+
+  <script>
+    window.addEventListener("load", () => {
+      document.documentElement.style.visibility = "visible";
+      document.documentElement.style.opacity = "1";
+    });
+
+    // Toggle project dropdowns
+    document.querySelectorAll('.project').forEach(project => {
+      project.addEventListener('click', () => {
+        project.classList.toggle('active');
+      });
+    });
+
+    // Scroll reveal
+    const sections = document.querySelectorAll("section");
+    const reveal = () => {
+      const trigger = window.innerHeight * 0.85;
+      sections.forEach(sec => {
+        const top = sec.getBoundingClientRect().top;
+        if (top < trigger) sec.classList.add("visible");
+      });
+    };
+    window.addEventListener("scroll", reveal);
+    window.addEventListener("load", reveal);
+  </script>
+
+</body>
+</html>
